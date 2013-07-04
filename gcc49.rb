@@ -32,6 +32,7 @@ class Gcc49 < Formula
   option 'enable-java', 'Buld the gcj compiler'
   option 'enable-objc', 'Enable Objective-C language support'
   option 'enable-objcxx', 'Enable Objective-C++ language support'
+  option 'enable-go', 'Enable Go language support'
   option 'enable-all-languages', 'Enable all compilers and languages, except Ada'
   option 'enable-nls', 'Build with native language support (localization)'
   option 'enable-profiled-build', 'Make use of profile guided optimization when bootstrapping GCC'
@@ -52,7 +53,7 @@ class Gcc49 < Formula
       # Everything but Ada, which requires a pre-existing GCC Ada compiler
       # (gnat) to bootstrap. GCC 4.6.0 add go as a language option, but it is
       # currently only compilable on Linux.
-      languages = %w[c c++ fortran java objc obj-c++]
+      languages = %w[c c++ fortran java objc obj-c++ go]
     else
       # The C compiler is always built, but additional defaults can be added
       # here.
@@ -63,6 +64,7 @@ class Gcc49 < Formula
       languages << 'java' if build.include? 'enable-java'
       languages << 'objc' if build.include? 'enable-objc'
       languages << 'obj-c++' if build.include? 'enable-objcxx'
+      languages << 'go' if build.include? 'enable-go'
     end
 
     # Sandbox the GCC lib, libexec and include directories so they don't wander
